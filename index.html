@@ -35,7 +35,7 @@
 }
 </script>
 <style>
-@font-face{ font-family:"JD Wide"; font-weight:600 800; font-display:swap; src:url("jd-archivo.woff2") format("woff2"); }
+@font-face{ font-family:"JD Wide"; font-weight:600 800; font-stretch:125%; font-display:swap; src:url("jd-archivo.woff2") format("woff2"); }
 @font-face{ font-family:"JD Sans"; font-weight:300 700; font-display:swap; src:url("jd-pretendard.woff2") format("woff2"); }
 :root{
   --black:#0E0E0E;
@@ -84,7 +84,7 @@ a{ color:inherit; }
 
 /* 히어로 */
 /* 사진 풀스크린 히어로 (v0.2 · 다올 결정 A안): 사진이 첫 화면을 채우고 아래 어두운 그라데이션 위에 글자 · 버튼 (R-11 · R-16) */
-.hero{ position:relative; display:flex; align-items:flex-end; min-height:calc(100vh - 106px); min-height:calc(100svh - 106px); overflow:hidden; }
+.hero{ position:relative; display:flex; align-items:flex-end; min-height:calc(100vh - 108px); min-height:calc(100svh - 108px); overflow:hidden; }
 .hero .bg, .hero .bg img{ position:absolute; inset:0; width:100%; height:100%; }
 .hero .bg img{ object-fit:cover; object-position:50% 50%; }
 .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,.9) 0%, rgba(10,10,10,.72) 30%, rgba(10,10,10,.35) 58%, rgba(10,10,10,.08) 82%); pointer-events:none; }
@@ -98,10 +98,11 @@ a{ color:inherit; }
 .cta3{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:26px; max-width:520px; }
 .cta3 .btn:first-child{ grid-column:1 / -1; }
 .hero .cta3 .btn:not(.fill){ background:rgba(10,10,10,.35); }
+@media (hover:hover){ .hero .cta3 .btn:not(.fill):hover{ background:#FFFFFF; color:var(--black); } }
 @media (max-width:899.98px){ .hero .cta3 .btn:nth-child(3){ display:none; } .hero .cta3 .btn:nth-child(2){ grid-column:1 / -1; } }
 @media (max-width:439.98px){ .cta3{ grid-template-columns:minmax(0,1fr); } }
 @media (min-width:900px){
-  .hero{ min-height:calc(100vh - 62px); min-height:calc(100svh - 62px); }
+  .hero{ min-height:calc(100vh - 63px); min-height:calc(100svh - 63px); }
   .hero .inner{ padding:140px 0 64px; }
   .hero .row{ display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:32px; }
   .cta3{ margin-top:0; width:420px; }
@@ -164,6 +165,7 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
 .quick{ position:fixed; left:0; right:0; bottom:0; z-index:60; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:6px; padding:8px 10px calc(8px + env(safe-area-inset-bottom)); background:var(--black); border-top:1px solid var(--dline); }
 .quick a{ display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:var(--r); font-size:.88rem; font-weight:600; text-decoration:none; border:1px solid #FFFFFF; color:#FFFFFF; }
 .quick a.fill{ background:#FFFFFF; color:var(--black); }
+.quick :focus-visible{ outline-color:#FFFFFF; }
 @media (min-width:900px){ .quick{ display:none; } }
 
 /* 히어로 글자 등장 · 나타나기 (동작 줄이기 설정이어도 강제 재생 · 다올 방침) */
