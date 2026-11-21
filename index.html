@@ -83,24 +83,28 @@ a{ color:inherit; }
 @media (hover:hover){ .btn:hover{ background:var(--ink); color:#FFFFFF; } .dark .btn:hover{ background:#FFFFFF; color:var(--black); } .btn.fill:hover{ background:#333333; } .dark .btn.fill:hover{ background:#DDDDDD; } }
 
 /* 히어로 */
-.hero{ padding:48px 0 0; }
-.hero .word{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:min(9rem, 11vw); line-height:.95; letter-spacing:.01em; white-space:nowrap; }
+/* 사진 풀스크린 히어로 (v0.2 · 다올 결정 A안): 사진이 첫 화면을 채우고 아래 어두운 그라데이션 위에 글자 · 버튼 (R-11 · R-16) */
+.hero{ position:relative; display:flex; align-items:flex-end; min-height:calc(100vh - 106px); min-height:calc(100svh - 106px); overflow:hidden; }
+.hero .bg, .hero .bg img{ position:absolute; inset:0; width:100%; height:100%; }
+.hero .bg img{ object-fit:cover; object-position:50% 50%; }
+.hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,.9) 0%, rgba(10,10,10,.72) 30%, rgba(10,10,10,.35) 58%, rgba(10,10,10,.08) 82%); pointer-events:none; }
+.hero .inner{ position:relative; z-index:2; padding:120px 0 calc(96px + env(safe-area-inset-bottom)); }
+@media (max-width:899.98px){ .hero::after{ background:linear-gradient(to top, rgba(10,10,10,.93) 0%, rgba(10,10,10,.86) 50%, rgba(10,10,10,.55) 72%, rgba(10,10,10,.12) 92%); } }
+.hero .word{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:min(7.5rem, 11vw); line-height:.95; letter-spacing:.01em; white-space:nowrap; }
 .js .intro-w{ opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease; }
 .js .intro-w.on{ opacity:1; transform:none; }
 .hero h1{ margin-top:24px; font-size:clamp(1.3rem, 4.8vw, 2rem); font-weight:600; line-height:1.4; }
-.hero .sub{ margin-top:10px; color:var(--dsoft); }
-.cta3{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:28px; max-width:520px; }
+.hero .sub{ margin-top:10px; color:#D6D6D6; }
+.cta3{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:26px; max-width:520px; }
 .cta3 .btn:first-child{ grid-column:1 / -1; }
+.hero .cta3 .btn:not(.fill){ background:rgba(10,10,10,.35); }
+@media (max-width:899.98px){ .hero .cta3 .btn:nth-child(3){ display:none; } }
 @media (max-width:439.98px){ .cta3{ grid-template-columns:minmax(0,1fr); } }
-.hero figure{ margin:40px 0 0; }
-.hero figure img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--r); }
-.hero .pad{ height:56px; }
 @media (min-width:900px){
-  .hero{ padding-top:72px; }
+  .hero{ min-height:calc(100vh - 62px); min-height:calc(100svh - 62px); }
+  .hero .inner{ padding:140px 0 64px; }
   .hero .row{ display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:32px; }
   .cta3{ margin-top:0; width:420px; }
-  .hero figure img{ aspect-ratio:16/9; }
-  .hero .pad{ height:80px; }
 }
 
 /* 공통 */
@@ -194,7 +198,11 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
 
 <main id="top">
   <section class="hero dark" aria-labelledby="hero-h">
-    <div class="wrap">
+    <picture class="bg">
+      <source media="(max-width:899.98px)" srcset="jd-hero-m.webp" width="810" height="1080" />
+      <img src="jd-hero.webp" alt="간접조명 천장과 베이지 소파가 있는 밝은 거실" width="1440" height="810" fetchpriority="high" />
+    </picture>
+    <div class="wrap inner">
       <p class="word intro-w" aria-hidden="true">J DESIGN</p>
       <div class="row">
         <div class="intro">
@@ -207,13 +215,6 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
           <a class="btn" href="https://www.instagram.com/jdesign__interior/" target="_blank" rel="noopener">인스타그램</a>
         </div>
       </div>
-      <figure>
-        <picture>
-          <source media="(max-width:899.98px)" srcset="jd-hero-m.webp" width="900" height="675" />
-          <img src="jd-hero.webp" alt="간접조명 천장과 베이지 소파가 있는 밝은 거실" width="1440" height="810" fetchpriority="high" />
-        </picture>
-      </figure>
-      <div class="pad"></div>
     </div>
   </section>
 
