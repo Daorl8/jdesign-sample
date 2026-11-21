@@ -98,7 +98,7 @@ a{ color:inherit; }
 .cta3{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:26px; max-width:520px; }
 .cta3 .btn:first-child{ grid-column:1 / -1; }
 .hero .cta3 .btn:not(.fill){ background:rgba(10,10,10,.35); }
-@media (max-width:899.98px){ .hero .cta3 .btn:nth-child(3){ display:none; } }
+@media (max-width:899.98px){ .hero .cta3 .btn:nth-child(3){ display:none; } .hero .cta3 .btn:nth-child(2){ grid-column:1 / -1; } }
 @media (max-width:439.98px){ .cta3{ grid-template-columns:minmax(0,1fr); } }
 @media (min-width:900px){
   .hero{ min-height:calc(100vh - 62px); min-height:calc(100svh - 62px); }
@@ -143,7 +143,7 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
 
 /* 문의 */
 .contact .free{ margin-top:36px; font-size:clamp(1.3rem, 4.6vw, 2rem); font-weight:700; line-height:1.45; }
-.contact .free small{ display:block; margin-top:10px; font-size:1rem; font-weight:400; color:var(--dsoft); }
+.contact .free small{ display:block; margin-top:10px; font-size:clamp(1.05rem, 3.4vw, 1.3rem); font-weight:600; color:#FFFFFF; }
 .contact .grid{ display:grid; gap:40px; margin-top:40px; }
 .contact .row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
 @media (max-width:439.98px){ .contact .row .btn{ flex:1 1 100%; } }
@@ -207,7 +207,7 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
       <div class="row">
         <div class="intro">
           <h1 id="hero-h">소중한 나만의 공간을 디자인하다</h1>
-          <p class="sub">평택·안성·천안지역 실측 및 디자인 상담을 <span class="nw">무료로 진행하고 있습니다:)</span></p>
+          <p class="sub">공간에 대한 이해를 우선으로, <span class="nw">더 아름답고 실용적인 공간을 만듭니다</span></p>
         </div>
         <div class="cta3">
           <a class="btn fill" href="tel:01054815706">전화 상담 <span class="nw">010-5481-5706</span></a>
@@ -280,7 +280,7 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
   <section class="sec contact dark" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="head reveal"><h2 id="contact-h">CONTACT</h2><small>상담 · 실측</small></div>
-      <p class="free reveal">평택, 안성, 천안 지역<br />실측 및 디자인 시안(sketch - up) 무료<small>무료로 진행해 드리니 편하게 문의주세요!</small></p>
+      <p class="free reveal">평택, 안성, 천안 지역<br />실측 및 디자인 시안(sketch - up)<small>무료로 진행해 드리니 편하게 문의주세요!</small></p>
       <div class="grid">
         <div>
           <dl class="cinfo reveal">
