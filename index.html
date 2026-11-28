@@ -19,7 +19,9 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="theme-color" content="#0E0E0E" />
 <link rel="icon" href="favicon.png" type="image/png" />
-<!-- 시안 도메인 = jdesign-sample.lgt3232.workers.dev. 고객 인계 시 grep lgt3232 → canonical·og:url·og:image·JSON-LD url/image 치환 -->
+<link rel="preload" href="jd-archivo.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="jd.css" />
+<!-- 시안 도메인 = jdesign-sample.lgt3232.workers.dev. 고객 인계 시 4페이지 모두 grep lgt3232 → canonical·og:url·og:image·JSON-LD url/image 치환 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,167 +36,19 @@
   "sameAs": ["https://www.instagram.com/jdesign__interior/", "https://blog.naver.com/j_deisgn_", "https://m.place.naver.com/place/1364104841/home"]
 }
 </script>
-<style>
-@font-face{ font-family:"JD Wide"; font-weight:600 800; font-stretch:125%; font-display:swap; src:url("jd-archivo.woff2") format("woff2"); }
-@font-face{ font-family:"JD Sans"; font-weight:300 700; font-display:swap; src:url("jd-pretendard.woff2") format("woff2"); }
-:root{
-  --black:#0E0E0E;
-  --white:#FFFFFF;
-  --gray:#F3F3F3;
-  --ink:#111111;
-  --soft:#555555;
-  --mute:#666666;
-  --line:#E2E2E2;
-  --dsoft:#B5B5B5;
-  --dline:#2E2E2E;
-  --r:2px;
-  --wide:"JD Wide","JD Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --sans:"JD Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-*{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:auto; scroll-padding-top:116px; -webkit-text-size-adjust:100%; }
-body{ font-family:var(--sans); color:var(--ink); background:var(--white); line-height:1.75; font-size:16px; -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word; }
-img{ max-width:100%; height:auto; display:block; }
-a{ color:inherit; }
-:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
-.dark :focus-visible{ outline-color:#FFFFFF; }
-[tabindex="-1"]:focus{ outline:none; }
-.wrap{ width:min(100% - 40px, 1200px); margin-inline:auto; }
-.nw{ white-space:nowrap; }
-.dark{ background:var(--black); color:#FFFFFF; }
-
-/* 헤더 */
-.top{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--dline); }
-.top .bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; height:62px; }
-.brand{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:1.2rem; letter-spacing:.04em; text-decoration:none; white-space:nowrap; }
-.nav{ display:none; gap:30px; font-family:var(--wide); font-stretch:125%; font-size:.76rem; font-weight:600; letter-spacing:.08em; }
-.nav a{ text-decoration:none; color:var(--dsoft); }
-.top .btn{ display:none; }
-.snav{ display:flex; border-top:1px solid var(--dline); padding:0 4px; }
-.snav a{ flex:1 1 0; display:flex; align-items:center; justify-content:center; min-height:44px; font-family:var(--wide); font-stretch:125%; font-size:.66rem; font-weight:600; letter-spacing:.04em; text-decoration:none; color:var(--dsoft); }
-@media (min-width:900px){ .nav{ display:flex; } .snav{ display:none; } .top .btn{ display:inline-flex; min-height:40px; padding:0 16px; font-size:.86rem; } html{ scroll-padding-top:72px; } }
-@media (hover:hover){ .nav a:hover, .snav a:hover{ color:#FFFFFF; } }
-
-/* 버튼 */
-.btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:50px; padding:0 24px; border-radius:var(--r); text-decoration:none; font-weight:600; font-size:.95rem; border:1px solid currentColor; background:transparent; transition:transform .1s, background-color .2s, color .2s; }
-.btn:active{ transform:scale(.98); }
-.btn.fill{ background:var(--ink); color:#FFFFFF; border-color:var(--ink); }
-.dark .btn.fill{ background:#FFFFFF; color:var(--black); border-color:#FFFFFF; }
-@media (hover:hover){ .btn:hover{ background:var(--ink); color:#FFFFFF; } .dark .btn:hover{ background:#FFFFFF; color:var(--black); } .btn.fill:hover{ background:#333333; } .dark .btn.fill:hover{ background:#DDDDDD; } }
-
-/* 히어로 */
-/* 사진 풀스크린 히어로 (v0.2 · 다올 결정 A안): 사진이 첫 화면을 채우고 아래 어두운 그라데이션 위에 글자 · 버튼 (R-11 · R-16) */
-.hero{ position:relative; display:flex; align-items:flex-end; min-height:calc(100vh - 108px); min-height:calc(100svh - 108px); overflow:hidden; }
-.hero .bg, .hero .bg img{ position:absolute; inset:0; width:100%; height:100%; }
-.hero .bg img{ object-fit:cover; object-position:50% 50%; }
-.hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,.9) 0%, rgba(10,10,10,.72) 30%, rgba(10,10,10,.35) 58%, rgba(10,10,10,.08) 82%); pointer-events:none; }
-.hero .inner{ position:relative; z-index:2; padding:120px 0 calc(96px + env(safe-area-inset-bottom)); }
-@media (max-width:899.98px){ .hero::after{ background:linear-gradient(to top, rgba(10,10,10,.93) 0%, rgba(10,10,10,.86) 50%, rgba(10,10,10,.55) 72%, rgba(10,10,10,.12) 92%); } }
-.hero .word{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:min(7.5rem, 11vw); line-height:.95; letter-spacing:.01em; white-space:nowrap; }
-.js .intro-w{ opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease; }
-.js .intro-w.on{ opacity:1; transform:none; }
-.hero h1{ margin-top:24px; font-size:clamp(1.3rem, 4.8vw, 2rem); font-weight:600; line-height:1.4; }
-.hero .sub{ margin-top:10px; color:#D6D6D6; }
-.cta3{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:26px; max-width:520px; }
-.cta3 .btn:first-child{ grid-column:1 / -1; }
-.hero .cta3 .btn:not(.fill){ background:rgba(10,10,10,.35); }
-@media (hover:hover){ .hero .cta3 .btn:not(.fill):hover{ background:#FFFFFF; color:var(--black); } }
-@media (max-width:899.98px){ .hero .cta3 .btn:nth-child(3){ display:none; } .hero .cta3 .btn:nth-child(2){ grid-column:1 / -1; } }
-@media (max-width:439.98px){ .cta3{ grid-template-columns:minmax(0,1fr); } }
-@media (min-width:900px){
-  .hero{ min-height:calc(100vh - 63px); min-height:calc(100svh - 63px); }
-  .hero .inner{ padding:140px 0 64px; }
-  .hero .row{ display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:32px; }
-  .cta3{ margin-top:0; width:420px; }
-}
-
-/* 공통 */
-.sec{ padding:104px 0; }
-.sec.gray{ background:var(--gray); }
-.head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding-bottom:16px; border-bottom:2px solid var(--ink); }
-.dark .head{ border-color:#FFFFFF; }
-h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp(1.7rem, 6vw, 2.7rem); line-height:1.05; letter-spacing:.01em; }
-.head small{ font-size:.9rem; color:var(--mute); }
-.dark .head small{ color:var(--dsoft); }
-
-/* 작업 사진 */
-.works{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:6px; margin-top:36px; }
-.works figure{ margin:0; overflow:hidden; border-radius:var(--r); background:var(--gray); }
-.works img{ width:100%; aspect-ratio:4/5; object-fit:cover; transition:transform .6s ease; }
-@media (min-width:768px){ .works{ grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px; } }
-@media (hover:hover){ .works figure:hover img{ transform:scale(1.03); } }
-
-/* 현장 목록 */
-.pj{ list-style:none; display:grid; grid-template-columns:minmax(0,1fr); gap:0; margin-top:8px; }
-.pj a{ display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:18px 0; border-bottom:1px solid var(--line); text-decoration:none; }
-.pj b{ display:block; font-size:1.08rem; font-weight:600; line-height:1.45; }
-.pj span.m{ display:block; margin-top:2px; font-size:.9rem; color:var(--mute); }
-.pj i{ font-style:normal; font-family:var(--wide); font-stretch:125%; font-size:.7rem; font-weight:600; letter-spacing:.06em; color:var(--soft); white-space:nowrap; }
-@media (min-width:900px){ .pj{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:48px; } }
-@media (hover:hover){ .pj a:hover b{ text-decoration:underline; text-underline-offset:4px; } }
-.p-note{ margin-top:22px; font-size:.92rem; color:var(--mute); }
-
-/* 소개 */
-.about .body{ display:grid; gap:28px; margin-top:40px; }
-.about .quote{ font-size:clamp(1.35rem, 4.6vw, 2rem); font-weight:700; line-height:1.45; }
-.about p.t{ color:var(--soft); }
-.about p.t + p.t{ margin-top:14px; }
-.about .career{ margin-top:22px; padding:14px 16px; border-left:3px solid var(--ink); background:var(--gray); font-size:.95rem; }
-@media (min-width:900px){ .about .body{ grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:72px; } }
-
-/* 문의 */
-.contact .free{ margin-top:36px; font-size:clamp(1.3rem, 4.6vw, 2rem); font-weight:700; line-height:1.45; }
-.contact .free small{ display:block; margin-top:10px; font-size:clamp(1.05rem, 3.4vw, 1.3rem); font-weight:600; color:#FFFFFF; }
-.contact .grid{ display:grid; gap:40px; margin-top:40px; }
-.contact .row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
-@media (max-width:439.98px){ .contact .row .btn{ flex:1 1 100%; } }
-.cinfo{ border-top:1px solid #FFFFFF; }
-.cinfo div{ display:grid; grid-template-columns:84px minmax(0,1fr); gap:12px; padding:16px 0; border-bottom:1px solid var(--dline); }
-.cinfo dt{ font-family:var(--wide); font-stretch:125%; font-size:.66rem; font-weight:600; letter-spacing:.06em; color:var(--dsoft); padding-top:5px; }
-.cinfo dd{ font-size:.97rem; }
-.cinfo dd p + p{ margin-top:2px; }
-.map{ width:100%; height:300px; border:0; border-radius:var(--r); background:#1E1E1E; display:block; filter:grayscale(1); }
-@media (min-width:900px){ .contact .grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:start; } .map{ height:100%; min-height:440px; } }
-
-.foot{ padding:44px 0 120px; border-top:1px solid var(--dline); font-size:.86rem; color:var(--dsoft); }
-.foot .brand{ display:inline-block; margin-bottom:14px; color:#FFFFFF; }
-.foot p + p{ margin-top:6px; }
-@media (min-width:900px){ .foot{ padding-bottom:48px; } }
-
-/* 모바일 하단 바 */
-.quick{ position:fixed; left:0; right:0; bottom:0; z-index:60; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:6px; padding:8px 10px calc(8px + env(safe-area-inset-bottom)); background:var(--black); border-top:1px solid var(--dline); }
-.quick a{ display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:var(--r); font-size:.88rem; font-weight:600; text-decoration:none; border:1px solid #FFFFFF; color:#FFFFFF; }
-.quick a.fill{ background:#FFFFFF; color:var(--black); }
-.quick :focus-visible{ outline-color:#FFFFFF; }
-@media (min-width:900px){ .quick{ display:none; } }
-
-/* 히어로 글자 등장 · 나타나기 (동작 줄이기 설정이어도 강제 재생 · 다올 방침) */
-.js .intro > *{ opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease; }
-.js .intro.on > *{ opacity:1; transform:none; }
-.js .intro.on > :nth-child(2){ transition-delay:.12s; }
-.js .intro.on > :nth-child(3){ transition-delay:.24s; }
-.js .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease var(--d,0s), transform .7s ease var(--d,0s); }
-.js .reveal.in{ opacity:1; transform:none; }
-</style>
 </head>
-<body>
+<body data-page="home">
 
 <header class="top dark">
   <div class="wrap bar">
-    <a class="brand" href="#top" aria-label="J DESIGN 처음으로">J DESIGN</a>
+    <a class="brand" href="/" aria-label="J DESIGN 처음으로">J DESIGN</a>
     <nav class="nav" aria-label="주요 메뉴">
-      <a href="#works">WORKS</a>
-      <a href="#projects">PROJECTS</a>
-      <a href="#about">ABOUT</a>
-      <a href="#contact">CONTACT</a>
+      <a href="/works">WORKS</a><a href="/about">ABOUT</a><a href="/contact">CONTACT</a>
     </nav>
     <a class="btn fill" href="tel:01054815706">전화 상담</a>
   </div>
-  <nav class="snav" aria-label="섹션 바로가기">
-    <a href="#works">WORKS</a>
-    <a href="#projects">PROJECTS</a>
-    <a href="#about">ABOUT</a>
-    <a href="#contact">CONTACT</a>
+  <nav class="snav" aria-label="페이지 바로가기">
+    <a href="/works">WORKS</a><a href="/about">ABOUT</a><a href="/contact">CONTACT</a>
   </nav>
 </header>
 
@@ -230,74 +84,32 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
         <figure class="reveal"><img src="jd-g04.webp" alt="진회색 대형 타일 샤워 공간" width="720" height="900" loading="lazy" /></figure>
         <figure class="reveal"><img src="jd-g05.webp" alt="아치형 조명 거울과 원형 세면볼" width="720" height="900" loading="lazy" /></figure>
         <figure class="reveal"><img src="jd-g06.webp" alt="세라믹 아일랜드가 있는 주방" width="720" height="900" loading="lazy" /></figure>
-        <figure class="reveal"><img src="jd-g07.webp" alt="우드 헤드보드와 간접조명 침실" width="720" height="900" loading="lazy" /></figure>
-        <figure class="reveal"><img src="jd-g08.webp" alt="흰 상하부장과 짙은 상판 주방" width="720" height="900" loading="lazy" /></figure>
-        <figure class="reveal"><img src="jd-g09.webp" alt="우드 벽과 유리블록 창이 있는 현관" width="720" height="900" loading="lazy" /></figure>
-        <figure class="reveal"><img src="jd-g10.webp" alt="간접조명 거울과 우드 포인트 욕실" width="720" height="900" loading="lazy" /></figure>
-        <figure class="reveal"><img src="jd-g11.webp" alt="햇빛이 드는 넓은 거실" width="720" height="900" loading="lazy" /></figure>
-        <figure class="reveal"><img src="jd-g12.webp" alt="우드 아일랜드와 매립 선반 주방" width="709" height="886" loading="lazy" /></figure>
       </div>
+      <p class="more-link reveal"><a class="btn" href="/works">시공사례 전체 보기</a></p>
     </div>
   </section>
 
-  <section class="sec gray" id="projects" aria-labelledby="projects-h">
-    <div class="wrap">
-      <div class="head reveal"><h2 id="projects-h">PROJECTS</h2><small>블로그 시공 후기</small></div>
-      <ul class="pj">
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224475464093" target="_blank" rel="noopener"><span><b>청북 빌라 주인세대</b><span class="m">빌라 · 34py / 84㎡ · 평택 청북읍</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224418689051" target="_blank" rel="noopener"><span><b>신세계타운</b><span class="m">아파트 · 32py / 84㎡ · 평택 비전동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224397040678" target="_blank" rel="noopener"><span><b>효성해링턴플레이스 2단지</b><span class="m">아파트 · 34py / 84㎡ · 평택 소사동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224354329819" target="_blank" rel="noopener"><span><b>태영청솔</b><span class="m">아파트 · 23py / 59㎡ · 평택 세교동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224318861546" target="_blank" rel="noopener"><span><b>비전레이크푸르지오</b><span class="m">아파트 · 33py / 85㎡ · 평택 용이동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224310462053" target="_blank" rel="noopener"><span><b>공간대여스튜디오</b><span class="m">상가 · 평택 동삭동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224297881877" target="_blank" rel="noopener"><span><b>지제더샵센트럴파크 3BL</b><span class="m">아파트 부분 · 33py / 84㎡ · 평택 동삭동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224215611765" target="_blank" rel="noopener"><span><b>원동청구</b><span class="m">아파트 · 32py / 84㎡ · 오산 원동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224208174590" target="_blank" rel="noopener"><span><b>소사벌중흥S-클래스</b><span class="m">아파트 · 33py / 84㎡ · 평택 죽백동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224165894780" target="_blank" rel="noopener"><span><b>소사벌호반베르디움</b><span class="m">아파트 · 33py / 84㎡ · 평택 죽백동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224113952671" target="_blank" rel="noopener"><span><b>고덕자이센트로</b><span class="m">아파트 · 33py / 84㎡ · 평택 고덕동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224099517529" target="_blank" rel="noopener"><span><b>화양휴먼빌퍼스트시티</b><span class="m">아파트 · 25py / 59㎡ · 평택 현덕면</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224089817457" target="_blank" rel="noopener"><span><b>힐스테이트지제역</b><span class="m">아파트 부분 · 24py / 59㎡ · 평택 동삭동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224073479042" target="_blank" rel="noopener"><span><b>힐스테이트지제역퍼스티움</b><span class="m">아파트 · 33py / 84㎡ · 평택 동삭동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/224041350397" target="_blank" rel="noopener"><span><b>서재자이</b><span class="m">아파트 · 23py / 79㎡ · 평택 동삭동</span></span><i>BLOG →</i></a></li>
-        <li class="reveal"><a href="https://m.blog.naver.com/j_deisgn_/223974910331" target="_blank" rel="noopener"><span><b>고덕호반써밋에듀파크</b><span class="m">아파트 · 33py · 평택 고덕</span></span><i>BLOG →</i></a></li>
-      </ul>
-      <p class="p-note reveal">네이버 블로그 시공 후기 중 일부예요. 더 많은 현장은 <a href="https://blog.naver.com/j_deisgn_" target="_blank" rel="noopener">블로그</a>에서 볼 수 있어요.</p>
-    </div>
-  </section>
-
-  <section class="sec about" id="about" aria-labelledby="about-h">
+  <section class="sec gray about" id="about" aria-labelledby="about-h">
     <div class="wrap">
       <div class="head reveal"><h2 id="about-h">ABOUT</h2><small>평택 인테리어 제이디자인</small></div>
       <div class="body">
         <p class="quote reveal">'앞으로의 꿈을 펼쳐나갈 <span class="nw">여러분의 공간'</span></p>
         <div class="reveal">
           <p class="t">공간에 대한 이해를 바탕으로 아름다움과 실용성을 함께 담는 평택 인테리어 제이디자인입니다. 성실하고 꼼꼼한 시공으로 완성도 높은 결과를 약속드리며, 평택·안성·천안지역 실측 및 디자인 상담을 무료로 진행하고 있습니다:)</p>
-          <p class="t">인테리어는 니즈와 공간에 대한 이해를 우선으로 더 아름답고 실용적이게 디자인하는 것이 중요하다고 생각합니다. 그렇기에 시공 전 상담을 통해 고객님의 니즈를 파악하고 공간을 디자인합니다.</p>
-          <p class="career">충청남도 한샘 직시공 소장으로 <span class="nw">2년 근무 경력</span></p>
         </div>
       </div>
+      <p class="more-link reveal"><a class="btn" href="/about">소개 더 보기</a></p>
     </div>
   </section>
 
-  <section class="sec contact dark" id="contact" aria-labelledby="contact-h">
+  <section class="sec contact home-cta dark" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="head reveal"><h2 id="contact-h">CONTACT</h2><small>상담 · 실측</small></div>
-      <p class="free reveal">평택, 안성, 천안 지역<br />실측 및 디자인 시안(sketch - up)<small>무료로 진행해 드리니 편하게 문의주세요!</small></p>
-      <div class="grid">
-        <div>
-          <dl class="cinfo reveal">
-            <div><dt>TEL</dt><dd><a href="tel:01054815706" class="nw">010-5481-5706</a></dd></div>
-            <div><dt>HOURS</dt><dd><p>월~토 <span class="nw">09:00 - 20:00</span></p><p>일 정기휴무 (매주 일요일)</p></dd></div>
-            <div><dt>ADDRESS</dt><dd>경기 평택시 <span class="nw">참이슬1길 12</span> 1층</dd></div>
-            <div><dt>SNS</dt><dd><a href="https://www.instagram.com/jdesign__interior/" target="_blank" rel="noopener">@jdesign__interior</a> · <a href="https://blog.naver.com/j_deisgn_" target="_blank" rel="noopener">블로그</a></dd></div>
-          </dl>
-          <div class="row reveal">
-            <a class="btn fill" href="tel:01054815706">전화하기</a>
-            <a class="btn" href="https://talk.naver.com/wvbr1ei" target="_blank" rel="noopener">네이버 톡톡</a>
-            <a class="btn" href="https://map.naver.com/p/entry/place/1364104841" target="_blank" rel="noopener">네이버 지도</a>
-          </div>
-        </div>
-        <iframe class="map reveal" title="제이디자인 위치 지도" src="https://www.google.com/maps?q=%EA%B2%BD%EA%B8%B0+%ED%8F%89%ED%83%9D%EC%8B%9C+%EC%B0%B8%EC%9D%B4%EC%8A%AC1%EA%B8%B8+12&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p class="free reveal">평택, 안성, 천안 지역<br />실측 및 디자인 <span class="nw">시안(sketch - up)</span><small>무료로 진행해 드리니 편하게 문의주세요!</small></p>
+      <div class="row reveal">
+        <a class="btn fill" href="tel:01054815706">전화하기</a>
+        <a class="btn" href="https://talk.naver.com/wvbr1ei" target="_blank" rel="noopener">네이버 톡톡</a>
+        <a class="btn" href="/contact">오시는 길 · 영업시간</a>
       </div>
     </div>
   </section>
@@ -318,48 +130,6 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
   <a href="https://www.instagram.com/jdesign__interior/" target="_blank" rel="noopener">인스타</a>
 </nav>
 
-<script>
-(function(){
-  var pending=[].slice.call(document.querySelectorAll('.reveal'));
-  pending.forEach(function(el){
-    var sib=[].slice.call(el.parentNode.children).filter(function(c){ return c.classList.contains('reveal'); });
-    if(sib.length>1){ el.style.setProperty('--d',(Math.min(sib.indexOf(el),5)*0.07)+'s'); }
-  });
-  function showAll(){ pending.forEach(function(el){ el.classList.add('in'); }); pending=[]; }
-  function start(){
-    var t=setInterval(function(){
-      if(!pending.length){ clearInterval(t); return; }
-      if(window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4){ showAll(); return; }
-      var line=window.innerHeight*0.92;
-      pending=pending.filter(function(el){
-        if(el.getBoundingClientRect().top < line){ el.classList.add('in'); return false; }
-        return true;
-      });
-    },120);
-  }
-  var started=false; function go(){ if(started) return; started=true; start(); }
-  var intro=document.querySelector('.intro'), introW=document.querySelector('.intro-w'); setTimeout(function(){ if(introW) introW.classList.add('on'); if(intro) intro.classList.add('on'); },60);
-  /* 부드러운 스크롤(R-25): OS '동작 줄이기'면 CSS smooth가 즉시 이동으로 바뀌어 rAF로 직접 움직임 · 1초 폴백 · 사용자 휠/터치면 중단 · 끝나면 대상 섹션으로 포커스 */
-  document.addEventListener('click',function(e){
-    var a=e.target.closest ? e.target.closest('a[href^="#"]') : null; if(!a) return;
-    var id=a.getAttribute('href'); if(id.length<2) return;
-    var t=document.querySelector(id); if(!t) return;
-    e.preventDefault();
-    var head=document.querySelector('.top'); var off=(head ? head.getBoundingClientRect().height : 0)+10;
-    var y0=window.pageYOffset; var y1=(id==='#top') ? 0 : Math.max(0, t.getBoundingClientRect().top+y0-off);
-    var dur=700, s0=null, done=false;
-    function ease(p){ return p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2; }
-    function stop(){ done=true; window.removeEventListener('wheel',stop); window.removeEventListener('touchstart',stop); }
-    function finish(){ stop(); if(!t.hasAttribute('tabindex')){ t.setAttribute('tabindex','-1'); } t.focus({preventScroll:true}); }
-    window.addEventListener('wheel',stop,{passive:true}); window.addEventListener('touchstart',stop,{passive:true});
-    function step(ts){ if(done) return; if(s0===null) s0=ts; var p=Math.min((ts-s0)/dur,1); window.scrollTo(0, y0+(y1-y0)*ease(p)); if(p<1){ requestAnimationFrame(step); } else { finish(); } }
-    requestAnimationFrame(step);
-    setTimeout(function(){ if(!done){ window.scrollTo(0,y1); finish(); } }, dur+300);
-    if(history.pushState){ history.pushState(null,'',id); }
-  });
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(go); }
-  setTimeout(go,1200);
-})();
-</script>
+<script src="jd.js"></script>
 </body>
 </html>
