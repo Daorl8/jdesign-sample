@@ -1,5 +1,5 @@
 @font-face{ font-family:"JD Wide"; font-weight:600 800; font-stretch:125%; font-display:swap; src:url("jd-archivo.woff2") format("woff2"); }
-@font-face{ font-family:"JD Sans"; font-weight:300 700; font-display:swap; src:url("jd-pretendard-v02.woff2") format("woff2"); }
+@font-face{ font-family:"JD Sans"; font-weight:300 700; font-display:swap; src:url("jd-pretendard-v03.woff2") format("woff2"); }
 :root{
   --black:#0E0E0E;
   --white:#FFFFFF;
@@ -159,3 +159,37 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
 .contact.first, .about.first{ padding-top:56px; }
 .about.first .body{ margin-top:0; }
 .contact.first .free{ margin-top:0; }
+
+/* ── v0.3.1 페이지 내용 보강 ── */
+/* 시공사례: 블로그 글 제목 문구 */
+.pj .tt{ display:block; margin-bottom:2px; font-size:.86rem; color:var(--soft); }
+/* 소개: 인사 · 사진 · 서비스 · 맺음말 */
+.hello{ margin-bottom:28px; font-size:clamp(1.05rem, 3.6vw, 1.25rem); font-weight:600; }
+.about-photo{ margin:56px 0 0; }
+.about-photo img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--r); }
+@media (min-width:900px){ .about-photo img{ aspect-ratio:16/7; } }
+.svc{ display:grid; gap:10px; margin-top:36px; }
+.svc article{ padding:28px 24px; background:var(--white); border:1px solid var(--line); border-radius:var(--r); }
+.svc .no, .steps .no{ display:block; font-family:var(--wide); font-stretch:125%; font-weight:600; font-size:.74rem; letter-spacing:.08em; color:var(--soft); }
+.svc h3{ margin-top:14px; font-size:1.35rem; font-weight:700; }
+.svc p{ margin-top:8px; }
+.svc p.sub{ margin-top:2px; font-size:.92rem; color:var(--mute); }
+@media (min-width:768px){ .svc{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+.closing-in{ display:grid; gap:36px; align-items:center; }
+.closing-in figure{ margin:0; max-width:420px; }
+.closing-in figure img{ width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r); }
+.closing .msg{ font-size:clamp(1.25rem, 4.4vw, 1.8rem); font-weight:700; line-height:1.5; }
+.closing .thanks{ margin-top:12px; color:var(--soft); }
+.closing .sign{ margin-top:22px; padding-top:16px; border-top:1px solid var(--line); color:var(--soft); }
+.closing .sign b{ color:var(--ink); font-weight:600; }
+.more-link.left{ justify-content:flex-start; }
+@media (min-width:900px){ .closing-in{ grid-template-columns:minmax(0,4fr) minmax(0,6fr); gap:72px; } }
+/* 문의: 상담에서 시공까지 · 사진 */
+.steps{ list-style:none; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1px; margin-top:36px; background:var(--dline); border:1px solid var(--dline); border-radius:var(--r); }
+.steps li{ padding:22px 18px; background:var(--black); }
+.steps .no{ color:var(--dsoft); }
+.steps b{ display:block; margin-top:10px; font-size:1.1rem; }
+.steps p{ margin-top:4px; font-size:.9rem; color:var(--dsoft); }
+@media (min-width:900px){ .steps{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
+.c-photo{ margin:28px 0 0; max-width:360px; }
+.c-photo img{ width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r); }
