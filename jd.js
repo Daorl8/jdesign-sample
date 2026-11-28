@@ -2,7 +2,10 @@
 (function(){
   /* 예전 한 페이지 주소(…/#works 등)로 들어오면 새 페이지로(v0.3) */
   var lg={'#works':'/works','#projects':'/works#projects','#about':'/about','#contact':'/contact'};
-  if(document.body.getAttribute('data-page')==='home' && lg[location.hash]){ location.replace(lg[location.hash]); return; }
+  if(document.body.getAttribute('data-page')==='home'){
+    if(lg[location.hash]){ location.replace(lg[location.hash]); return; }
+    window.addEventListener('hashchange',function(){ if(lg[location.hash]){ location.replace(lg[location.hash]); } });  /* 열어둔 홈에서 주소 끝만 바뀔 때(v0.3.2) */
+  }
 
   var pending=[].slice.call(document.querySelectorAll('.reveal'));
   pending.forEach(function(el){

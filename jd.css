@@ -118,7 +118,7 @@ h2{ font-family:var(--wide); font-weight:800; font-stretch:125%; font-size:clamp
 .cinfo dd{ font-size:.97rem; }
 .cinfo dd p + p{ margin-top:2px; }
 .map{ width:100%; height:300px; border:0; border-radius:var(--r); background:#1E1E1E; display:block; filter:grayscale(1); }
-@media (min-width:900px){ .contact .grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:start; } .map{ height:100%; min-height:440px; } }
+@media (min-width:900px){ .contact .grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:start; } .map{ height:100%; min-height:440px; max-height:560px; } }
 
 .foot{ padding:44px 0 120px; border-top:1px solid var(--dline); font-size:.86rem; color:var(--dsoft); }
 .foot .brand{ display:inline-block; margin-bottom:14px; color:#FFFFFF; }
